@@ -38,6 +38,15 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     
 ]
+ALLOWED_HOSTS = [
+  'localhost',
+  '127.0.0.1',
+  'http://34.132.129.44/',
+  'https://34.132.129.44/',
+  'http://34.132.129.44:8000/',
+  'https://34.132.129.44:8000/',
+  ]
+
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 CORS_ALLOW_METHODS = [
