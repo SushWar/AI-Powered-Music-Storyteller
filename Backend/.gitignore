@@ -1,0 +1,5 @@
+/env
+/storyteller/ztempstore
+/storyteller/.env
+/storyteller/temp.py
+/storyteller/db.sqlite3
