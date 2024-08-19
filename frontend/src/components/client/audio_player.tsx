@@ -1,17 +1,10 @@
-import { useRef, useState, useEffect } from "react"
-import {
-  IoPlayBack,
-  IoPlayForward,
-  IoPlaySharp,
-  IoPauseSharp,
-} from "react-icons/io5"
+import { useRef, useState } from "react"
+import { IoPlaySharp, IoPauseSharp } from "react-icons/io5"
 
 import { AudioPlayerFunction } from "../interface"
 
 export const AudioPlayer: React.FC<AudioPlayerFunction> = ({
-  startSlideShow,
   src,
-  setSrc,
   setSlideShow,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -60,12 +53,9 @@ export const AudioPlayer: React.FC<AudioPlayerFunction> = ({
   const handleLoadedMetaData = () => {
     if (audioRef.current?.duration && audioRef.current?.duration !== Infinity) {
       setDuration(formatTime(audioRef.current.duration ?? 0))
-      // const currentTime = audioRef.current.duration * coefficient
-      // audioRef.current.currentTime = currentTime
     }
   }
 
-  // useEffect(() => {}, [audioRef])
   return (
     <div className=" bg-neutral-950 rounded-md">
       <audio

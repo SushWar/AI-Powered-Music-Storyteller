@@ -96,32 +96,49 @@ export const StorySection: React.FC<StorySectionInterface> = ({ songList }) => {
 
 const SkitPlay: React.FC<ChildSkitModel> = ({ getSkit }) => {
   return (
-    <div className="mx-4 my-2 flex flex-col gap-4">
-      <div className=" border border-red-600 text-center p-4 ">
-        <h1 className="font-extrabold text-3xl md:text-5xl">{getSkit.Title}</h1>
+    <div className="mx-4 mt-12 flex flex-col gap-4 border-t-8 border-dotted border-pink-200">
+      <div className="text-center p-4 ">
+        <h1 className="font-extrabold text-4xl md:text-7xl text-accent-gold uppercase">
+          {getSkit.Title}
+        </h1>
       </div>
-      <div className=" border border-blue-600 px-4 py-2">
-        <h2 className="font-semibold text-lg md:text-3xl">Characters</h2>
+      <div className=" px-4 py-2">
+        <h2 className="font-semibold text-lg md:text-3xl text-accent-silver">
+          Characters
+        </h2>
 
         <div className=" justify-center gap-4 md:flex ">
           {getSkit.Character_List.map((val) => {
             return (
               <div
                 key={val.name}
-                className=" bg-slate-800 rounded-md max-w-[50%] mx-4 py-2 p-4 m-3"
+                className=" bg-slate-800 rounded-md md:w-[30rem] mx-4 py-2 p-4 m-3"
               >
                 <div className="flex flex-col gap-4">
-                  <div>
-                    <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+                  <div className="flex justify-center">
+                    <Avatar
+                      sx={{ bgcolor: deepOrange[500], width: 56, height: 56 }}
+                    >
+                      {val.name[0]}
+                    </Avatar>
                   </div>
                   <div>
-                    Name: <span>{val.name}</span>
+                    <span className=" text-slate-300">Name: </span>
+                    <span className="text-primary-lightBlue font-bold">
+                      {val.name}
+                    </span>
                   </div>
                   <div>
-                    Description: <span>{val.description}</span>
+                    <span className=" text-slate-300">Description: </span>
+                    <span className="text-primary-lightBlue font-bold">
+                      {val.description}
+                    </span>
                   </div>
                   <div>
-                    music Style: <span>{val.music_style}</span>
+                    <span className=" text-slate-300">Music Style: </span>
+                    <span className="text-primary-lightBlue font-bold">
+                      {val.music_style}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -129,14 +146,19 @@ const SkitPlay: React.FC<ChildSkitModel> = ({ getSkit }) => {
           })}
         </div>
       </div>
-      <div className=" border border-green-600 px-4 py-2">
-        <h2 className="font-semibold text-lg md:text-3xl">Plot Summary</h2>{" "}
-        <div className="bg-slate-800 rounded-md mx-4 py-2 p-4 m-3">
+
+      <div className="  px-4 py-2">
+        <h2 className="font-semibold text-lg md:text-3xl text-accent-silver">
+          Plot Summary
+        </h2>{" "}
+        <div className="bg-slate-800 rounded-md mx-4 py-4 px-3 m-3 text-primary-lightBlue font-bold">
           {getSkit.Plot_Summary}
         </div>
       </div>
-      <div className=" border border-yellow-600 py-2 px-4">
-        <h2 className="font-semibold text-lg md:text-3xl">Scene breakdown</h2>
+      <div className="  py-2 px-4">
+        <h2 className="font-semibold text-lg md:text-3xl text-accent-silver mb-8">
+          Scene breakdown
+        </h2>
 
         {getSkit.Scene_Breakdown.map((val) => {
           return (
@@ -144,21 +166,23 @@ const SkitPlay: React.FC<ChildSkitModel> = ({ getSkit }) => {
               key={val.scene_number}
               className="bg-slate-800 rounded-md mx-4 py-2 p-4 m-3"
             >
-              <div className=" font-medium md:text-lg">
-                {" "}
-                Scene {val.scene_number} :
+              <div className="text-center mb-8 font-medium text-lg md:text-2xl text-amber-100">
+                Scene {val.scene_number}
               </div>
-              <div className="py-2 px-4 flex flex-col gap-4">
+              <div className="py-2 px-4 flex flex-col gap-4 text-primary-lightBlue">
                 <div className="flex gap-2">
-                  <div className=" font-semibold">visual:</div>
+                  <div className=" font-semibold text-lime-600">visual:</div>
                   <div>{val.setting}</div>
                 </div>
                 <div className="flex gap-2">
-                  <div className=" font-semibold">Action:</div>
+                  <div className=" font-semibold text-red-400">Action:</div>
                   <div>{val.actions}</div>
                 </div>
+
                 <div className="flex gap-2">
-                  <div className=" font-semibold">Dialogue</div>
+                  <div className=" font-semibold text-yellow-600">
+                    Dialogue:
+                  </div>
                   <div>
                     <ShowDialogue
                       dialogue={val.dialogue}
@@ -169,7 +193,7 @@ const SkitPlay: React.FC<ChildSkitModel> = ({ getSkit }) => {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <div className=" font-semibold">Music:</div>
+                  <div className=" font-semibold text-teal-400">Music:</div>
                   <div>{val.music}</div>
                 </div>
               </div>
@@ -186,7 +210,7 @@ const ShowDialogue: React.FC<DialogueInterface> = ({
   characters,
 }) => {
   return (
-    <div className=" flex flex-col gap-4">
+    <div className=" flex flex-col gap-4 italic text-purple-100">
       {formatDialogue(dialogue, characters).map((val: string) => {
         return <div key={val.length}>{val}</div>
       })}
@@ -239,33 +263,7 @@ const MusicModal: React.FC<MusicModelInterface> = ({
     setSong(val)
     setOpen(false)
   }
-  //   const songList = [
-  //     "Song1",
-  //     "song2",
-  //     "song3",
-  //     "song4",
-  //     "song4g34g34g324g34g34g324g324g34g3g3gf34gf3f3fd3f34f324f3",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4fewf32f32f32fg32g32rg32g324g34g34g34g34g23g3",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //     "song4",
-  //   ]
+
   return (
     <div>
       <Modal
@@ -282,7 +280,7 @@ const MusicModal: React.FC<MusicModelInterface> = ({
                   return (
                     <div
                       key={key}
-                      className=" hover:bg-slate-600 cursor-pointer w-full py-3 px-1"
+                      className=" hover:bg-slate-600 cursor-pointer w-full py-3 px-1 text-lg font-medium"
                       onClick={() => {
                         songSelected(val)
                       }}
