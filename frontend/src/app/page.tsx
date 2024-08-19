@@ -6,15 +6,20 @@ import {
   AnimatePresence,
   useMotionValueEvent,
 } from "framer-motion"
-
+import {
+  rightX_entryVariant,
+  drawVariant,
+  slideVariants,
+  leftX_entryVariant,
+} from "@/components/motion"
 export default function Home() {
-  useEffect(() => {
-    console.log("Home Component mounted")
+  // useEffect(() => {
+  //   console.log("Home Component mounted")
 
-    return () => {
-      console.log("Home Component unmounted")
-    }
-  }, [])
+  //   return () => {
+  //     console.log("Home Component unmounted")
+  //   }
+  // }, [])
   return (
     <>
       <ImageSection />
@@ -31,24 +36,24 @@ function WorkingSection() {
     "share your masterpiece",
   ]
   return (
-    <div className=" min-h-screen m-4 p-8">
+    <div className=" m-4 p-8">
       <div>
         <div className=" flex flex-col gap-16 lg:flex-row justify-center items-center ">
           <h3 className="text-primary-lavender font-bold text-balance text-6xl">
-            How it works in 3 steps
+            How it works..
           </h3>
-          <ol className=" list-decimal">
-            {steps.map((val) => {
-              return (
-                <li key={val} className="text-3xl text-accent-silver">
-                  {val}
-                </li>
-              )
-            })}
-          </ol>
         </div>
-        <div className="mt-16 w-full h-[30vh] bg-red-500">
-          Video of demonstration
+        <div className="mt-16 w-full">
+          <iframe
+            width="100%"
+            height="600"
+            src="https://www.youtube.com/embed/t6hYcoV4G6g?si=Us1ckeK5BJk3b5H7"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
     </div>
@@ -72,26 +77,28 @@ function AboutSection() {
 
   return (
     <div className="min-h-screen mx-2 p-4">
-      <div className=" flex flex-col lg:grid grid-cols-2 gap-12">
+      <div className=" flex flex-col lg:grid grid-cols-2 gap-12 items-center">
         <div className="">
           <h1 className=" text-primary-lavender font-bold text-balance text-6xl">
             From sound waves to stunning frames, we bridge the gap.
           </h1>
         </div>
         <div>
-          <h2 className=" text-accent-silver">
+          <h2 className=" text-accent-silver md:text-2xl">
             Elevate your projects and Bring your music to life with breathtaking
-            imagery.
+            imagery and Skit.
           </h2>
         </div>
         <div className=" w-[80%] m-auto">
           <div className="text-3xl mb-5 border-b-[1px] pb-4">
-            400M+ images generated
+            1000+ images generated
           </div>
           <div className="text-3xl mb-5 border-b-[1px] pb-4">
-            2 second generation time
+            500+ Skit generated from Song
           </div>
-          <div className="text-3xl mb-5 border-b-[1px] pb-4">10,000+ GPUs</div>
+          <div className="text-3xl mb-5 border-b-[1px] pb-4">
+            Minimum response time 5 sec
+          </div>
         </div>
         <div className=" relative max-h-[40vh]">
           <div>
@@ -222,98 +229,4 @@ function ImageSection() {
       </div>
     </div>
   )
-}
-
-const rightX_entryVariant = {
-  hidden: {
-    opacity: 0,
-    x: "100vw",
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 1,
-      duration: 1,
-      type: "spring",
-      when: "beforeChildren",
-      staggerChildren: 0.4, //This will ensure every children will run after
-      mass: 0.4,
-      damping: 8,
-    },
-  },
-  exit: {
-    x: "100vw",
-    transition: { duration: 2, type: "spring", ease: "easeOut" },
-  },
-}
-
-const drawVariant = {
-  hidden: { pathLength: 0, opacity: 0 },
-  visible: (i: any) => {
-    const delay = 1 + i * 0.5
-    return {
-      pathLength: 1,
-      opacity: 1,
-      // transition: {
-      //   duration: 1,
-      //   ease: "easeInOut",
-      // },
-      transition: {
-        pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
-        opacity: { delay, duration: 0.01 },
-        ease: "easeInOut",
-      },
-    }
-  },
-}
-
-const leftX_entryVariant = {
-  hidden: {
-    opacity: 0,
-    x: "-100vw",
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 1,
-      duration: 1,
-      type: "spring",
-      when: "beforeChildren",
-      staggerChildren: 0.4, //This will ensure every children will run after
-      mass: 0.4,
-      damping: 8,
-    },
-  },
-  exit: {
-    x: "-100vw",
-    transition: { duration: 2, type: "spring", ease: "easeOut" },
-  },
-}
-
-const slideVariants = {
-  hiddenRight: {
-    x: "100%",
-    opacity: 0,
-  },
-  hiddenLeft: {
-    x: "-100%",
-    opacity: 0,
-  },
-  visible: {
-    x: "0",
-    opacity: 1,
-    transition: {
-      delay: 1,
-      duration: 1,
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.8,
-    transition: {
-      duration: 1,
-    },
-  },
 }
