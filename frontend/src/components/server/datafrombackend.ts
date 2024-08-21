@@ -119,8 +119,8 @@ export const getSongSkit = async (audio: string) => {
         headers: headers,
       }
     ).then((res) => res.json())
-    const test = JSON.parse(paramTest.output)
-
+    const test = await JSON.parse(paramTest.output)
+    log("fetched the script")
     return test
   } catch (error: any) {
     log(error.message, "error")
