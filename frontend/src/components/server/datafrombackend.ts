@@ -80,13 +80,16 @@ export async function getSignedUrl(audioFile: string) {
     log("Triggered getSignedUrl function")
     if (process.env.CLIENT_SECRET) {
       log("Client Secret is present")
-      const newClientSecret = JSON.parse(process.env.CLIENT_SECRET)
+      const secret = process.env.CLIENT_SECRET
+
+      const newClientSecret = await JSON.parse(secret)
 
       const storage = new Storage({
-        keyFilename: newClientSecret,
+        credentials: newClientSecret,
       })
 
       const bucketName = process.env.BUCKET_NAME || ""
+
       const path = `audio/${audioFile}`
 
       const [url] = await storage
@@ -97,6 +100,7 @@ export async function getSignedUrl(audioFile: string) {
           action: "read",
           expires: Date.now() + 15 * 60 * 1000, // 15 minutes
         })
+
       return url
     }
     return null
