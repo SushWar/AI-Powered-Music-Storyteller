@@ -52,13 +52,10 @@ export interface SongSettingFunction {
 export interface ContentViewFunction {
   isStoryModelLoading: boolean
   startSlideShow: boolean
-  imagePrompt: any
+  imagePrompt: string[]
 }
 
 export interface AudioPlayerFunction {
-  startSlideShow: boolean
-
   src: string | null
-  setSrc: Dispatch<SetStateAction<string | null>>
   setSlideShow: Dispatch<SetStateAction<boolean>>
 }

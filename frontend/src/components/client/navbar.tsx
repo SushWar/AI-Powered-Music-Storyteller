@@ -13,7 +13,9 @@ export function Navbar() {
         <div className=" px-2 py-4">
           <div className="flex justify-around text-base md:text-2xl lg:text-4xl font-bold">
             <div>
-              <div className="cursor-pointer ">TuneStory</div>
+              <div className="cursor-pointer ">
+                <Link href={"/"}>TuneStory</Link>
+              </div>
             </div>
             <div>
               <div className=" cursor-pointer px-2 animated-underline">

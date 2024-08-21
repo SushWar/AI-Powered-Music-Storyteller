@@ -6,17 +6,15 @@ import { AudioPlayer } from "@/components/client/audio_player"
 import { Setting } from "@/components/client/settings"
 import { ContentView } from "@/components/client/content_view"
 import {
-  getAudioFIles,
+  getAudioFiles,
   getAudioPrompt,
   getSignedUrl,
-  getSongSkit,
-  testENV,
 } from "@/components/server/datafrombackend"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { ImageFormData, StoryModelOutput } from "@/components/interface"
 import { StorySection } from "@/components/client/story_play"
-import { rightX_entryVariant } from "@/components/motion"
+import { rightX_entryVariant_setting } from "@/components/motion"
 
 export default function Playground() {
   const [hasMounted, setHasMounted] = useState(false)
@@ -31,7 +29,7 @@ export default function Playground() {
 
   const getAudio = async () => {
     try {
-      const audio = await getAudioFIles()
+      const audio = await getAudioFiles()
 
       let audioFiles: string[] = []
       audio.audio.map((val: string) => {
@@ -49,13 +47,12 @@ export default function Playground() {
       if (formData) {
         setModelLoading(true)
         setSlideShow(false)
-        console.log(formData)
+
         const staticData = await getAudioPrompt(formData)
         setStoryModel(staticData)
         const getAudiosrc = await getSignedUrl(formData.audio)
         setSrc(getAudiosrc)
         setSlideShow(true)
-        console.log(storyModel)
       }
     } catch (error) {
       console.log("error", error)
@@ -69,10 +66,10 @@ export default function Playground() {
     setHasMounted(true)
     getAudio()
 
-    console.log("PLayground Component mounted")
+    // console.log("PLayground Component mounted")
     return () => {
       setHasMounted(false)
-      console.log("PLayground Component unmounted")
+      // console.log("PLayground Component unmounted")
     }
   }, [])
 
@@ -92,12 +89,7 @@ export default function Playground() {
               />
               <div className=" mt-3 flex w-full items-center">
                 <div className=" w-full">
-                  <AudioPlayer
-                    startSlideShow={startSlideShow}
-                    src={src}
-                    setSrc={setSrc}
-                    setSlideShow={setSlideShow}
-                  />
+                  <AudioPlayer src={src} setSlideShow={setSlideShow} />
                 </div>
                 <div className=" w-[10vw] lg:hidden mx-3">
                   <div className="flex justify-center">
@@ -118,7 +110,7 @@ export default function Playground() {
                 {(isOpenSetting || screenWidth) && (
                   <motion.div
                     className="mx-3 h-full w-full lg:w-[30vw] absolute top-0 right-0 lg:relative lg:h-auto"
-                    variants={rightX_entryVariant}
+                    variants={rightX_entryVariant_setting}
                     initial="hidden"
                     animate="visible"
                     exit="exit"

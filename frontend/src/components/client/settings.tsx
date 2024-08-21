@@ -2,7 +2,7 @@ import { FormEvent, Suspense, useCallback, useEffect, useState } from "react"
 import { IoIosArrowDropdown } from "react-icons/io"
 import { IoCloseCircle } from "react-icons/io5"
 import { RiInformation2Line } from "react-icons/ri"
-import { getAudioFIles, getData } from "../server/datafrombackend"
+import { getAudioFiles, getImagesApi } from "../server/datafrombackend"
 import { SettingFunction, SongSettingFunction } from "../interface"
 import { SongListLoadingSkeleton } from "../reuse"
 
@@ -28,9 +28,9 @@ export const Setting: React.FC<SettingFunction> = ({
   }
 
   useEffect(() => {
-    console.log("Setting Component mounted")
+    // console.log("Setting Component mounted")
     return () => {
-      console.log("Setting Component unmounted")
+      // console.log("Setting Component unmounted")
     }
   }, [])
 

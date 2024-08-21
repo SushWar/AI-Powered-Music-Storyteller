@@ -135,7 +135,7 @@ class AudioService(CloudService):
                 safety_settings=safety_settings,
             
             )
-            print(responses.text)
+            
             return responses.text
             
             
