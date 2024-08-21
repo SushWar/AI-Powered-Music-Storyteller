@@ -5,7 +5,7 @@ import { ImageFormData } from "../interface"
 import { log } from "../logging"
 
 const api = process.env.API_KEY
-const backendUrl = process.env.DEV_BACKEND_URL
+const backendUrl = process.env.BACKEND_URL
 var headers = new Headers({
   Authorization: api || "",
 })
