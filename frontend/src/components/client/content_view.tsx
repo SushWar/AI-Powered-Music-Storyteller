@@ -18,6 +18,7 @@ export const ContentView: React.FC<ContentViewFunction> = ({
   const [getImageUrl, setImageUrl] = useState<string[]>()
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const imageIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const disableMessage = ` We're currently working on improving the content for you. In the meantime, you can still enjoy the audio! Just select the audio part and press the submit button to listen.`
 
   const getImages = async (prompt: string) => {
     try {
@@ -78,17 +79,13 @@ export const ContentView: React.FC<ContentViewFunction> = ({
     return () => {
       // console.log("Content Component unmounted")
     }
-  }, [startSlideShow])
+  }, [startSlideShow, disabled])
 
   return (
     <div className="bg-neutral-950 rounded-md min-h-[60vh] p-2">
       {disabled && (
         <div className="h-full flex justify-center">
-          <div>
-            We're currently working on improving the content for you. In the
-            meantime, you can still enjoy the audio! Just select the audio part
-            and press the submit button to listen.
-          </div>
+          <div>{disableMessage}</div>
         </div>
       )}
       {!disabled && getImageUrl && currentImageIndex < getImageUrl.length ? (

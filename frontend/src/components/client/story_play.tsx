@@ -82,12 +82,12 @@ export const StorySection: React.FC<StorySectionInterface> = ({ songList }) => {
         </div>
       )}
       <div>
-        {getSkit ? (
+        {getSkit?.Title ? (
           <SkitPlay getSkit={getSkit} />
         ) : skitLoading ? (
           <SkitLoadingSkeleton />
         ) : (
-          <></>
+          <> </>
         )}
       </div>
     </div>

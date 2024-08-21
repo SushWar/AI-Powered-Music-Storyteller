@@ -98,7 +98,6 @@ export async function getSignedUrl(audioFile: string) {
           action: "read",
           expires: Date.now() + 15 * 60 * 1000, // 15 minutes
         })
-      //   console.log(url)
       return url
     }
     return null
@@ -117,23 +116,11 @@ export const getSongSkit = async (audio: string) => {
         headers: headers,
       }
     ).then((res) => res.json())
-    // console.log(paramTest.output)
-    // const test = JSON.parse(paramTest.output)
+    const test = JSON.parse(paramTest.output)
 
-    // return test
-    return paramTest.output
+    return test
   } catch (error: any) {
     log(error.message, "error")
     return null
   }
 }
-
-// export const testingClientsec = () => {
-//   try {
-//     log("Inside tetsing")
-//     if (process.env.CLIENT_SECRET)
-//       console.log(JSON.parse(process.env.CLIENT_SECRET))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
