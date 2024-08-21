@@ -36,13 +36,12 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    
+    'https://ai-powered-music-storyteller.vercel.app'
 ]
 ALLOWED_HOSTS = [
   'localhost',
-  '127.0.0.1',
-  '34.132.129.44',
-  
+  '0.0.0.0',
+  '35.225.242.254'
   ]
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
