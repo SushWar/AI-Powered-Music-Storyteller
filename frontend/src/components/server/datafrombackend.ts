@@ -83,8 +83,7 @@ export async function getSignedUrl(audioFile: string) {
       const newClientSecret = JSON.parse(process.env.CLIENT_SECRET)
 
       const storage = new Storage({
-        keyFilename:
-          "D:/projects/AI/AI-Powered-Music-Storyteller/frontend/temp/key.json",
+        keyFilename: newClientSecret,
       })
 
       const bucketName = process.env.BUCKET_NAME || ""
