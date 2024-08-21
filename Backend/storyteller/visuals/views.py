@@ -53,10 +53,10 @@ def storyline(request:HttpRequest):
             audio = AudioService()
             
             
-            invokeAi = audio.vertex_audio_to_text(audio_file=audioFromStroyLine, creativity=tempFromStoryLine, user_prompt=promptFromStoryLine)
+            # invokeAi = audio.vertex_audio_to_text(audio_file=audioFromStroyLine, creativity=tempFromStoryLine, user_prompt=promptFromStoryLine)
             
             # cleaned_output = invokeAi.strip("`").strip("json")
-            return JsonResponse({'output': invokeAi},status=200)
+            return JsonResponse({'output': "Option is disabled"},status=200)
         
 
         return JsonResponse({'error': "Not Authorized"}, status=500)
