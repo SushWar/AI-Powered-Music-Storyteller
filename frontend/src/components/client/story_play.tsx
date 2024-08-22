@@ -38,9 +38,20 @@ export const StorySection: React.FC<StorySectionInterface> = ({ songList }) => {
     if (selectedSong) {
       try {
         setSkitLoading(true)
-        const skit = await getSongSkit(selectedSong)
-        setSkit(skit)
-        // console.log(skit)
+        const skit: { url: string; headers: any } = (await getSongSkit(
+          selectedSong
+        )) as { url: string; headers: any }
+        const paramTest = await fetch(
+          `${skit.url}song-to-story/?audio=${selectedSong}`,
+          {
+            headers: skit.headers,
+          }
+        ).then((res) => res.json())
+        console.log("Paramtest -->", paramTest)
+        const test = await JSON.parse(paramTest.output)
+
+        setSkit(test)
+        console.log(skit)
       } catch (error) {
         console.log("error", error)
       } finally {

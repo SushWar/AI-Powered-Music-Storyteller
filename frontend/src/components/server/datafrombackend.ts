@@ -4,7 +4,7 @@ import { Storage } from "@google-cloud/storage"
 import { ImageFormData } from "../interface"
 import { log } from "../logging"
 
-const api = process.env.API_KEY
+const api = process.env.API_KEY as string
 const backendUrl = process.env.BACKEND_URL
 var headers = new Headers({
   Authorization: api || "",
@@ -112,16 +112,17 @@ export async function getSignedUrl(audioFile: string) {
 
 export const getSongSkit = async (audio: string) => {
   try {
-    log("Triggered getSongSkit function")
-    const paramTest = await fetch(
-      `${backendUrl}song-to-story/?audio=${audio}`,
-      {
-        headers: headers,
-      }
-    ).then((res) => res.json())
-    const test = await JSON.parse(paramTest.output)
-    log("fetched the script")
-    return test
+    // log("Triggered getSongSkit function")
+    // const paramTest = await fetch(
+    //   `${backendUrl}song-to-story/?audio=${audio}`,
+    //   {
+    //     headers: headers,
+    //   }
+    // ).then((res) => res.json())
+    // const test = await JSON.parse(paramTest.output)
+    // log("fetched the script")
+    // return test
+    return { url: backendUrl, headers: headers }
   } catch (error: any) {
     log(error.message, "error")
     return null
